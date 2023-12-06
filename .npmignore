@@ -1,0 +1,8 @@
+# Exclude source and development files
+src
+.nvmrc
+jest.config.js
+tsconfig.json
+
+# Exclude test files
+test
