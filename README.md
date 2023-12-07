@@ -1,4 +1,4 @@
-# b-map
+# betmap
 Better Map()
 
 * Small (no dependencies)

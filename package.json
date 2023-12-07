@@ -1,5 +1,5 @@
 {
-  "name": "b-map",
+  "name": "betmap",
   "version": "0.0.1",
   "description": "Better Map()",
   "main": "dist/BMap.js",
@@ -13,21 +13,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MatthewFay/b-map.git"
+    "url": "git+https://github.com/MatthewFay/betmap.git"
   },
   "keywords": [
     "map",
-    "b-map",
+    "betmap",
     "BMap",
     "Better",
-    "Map()"
+    "Map()",
+    "Better Map()"
   ],
   "author": "Matthew Fay",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MatthewFay/b-map/issues"
+    "url": "https://github.com/MatthewFay/betmap/issues"
   },
-  "homepage": "https://github.com/MatthewFay/b-map#readme",
+  "homepage": "https://github.com/MatthewFay/betmap#readme",
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.3",
