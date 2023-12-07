@@ -1,9 +1,9 @@
 {
   "name": "b-map",
   "version": "1.0.0",
-  "description": "better Map()",
-  "main": "dist/b-map.js",
-  "types": "dist/b-map.d.ts",
+  "description": "Better Map()",
+  "main": "dist/BMap.js",
+  "types": "dist/BMap.d.ts",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
@@ -18,7 +18,8 @@
   "keywords": [
     "map",
     "b-map",
-    "better",
+    "BMap",
+    "Better",
     "Map()"
   ],
   "author": "Matthew Fay",
