@@ -6,6 +6,7 @@ Better Map()
 * Event system to subscribe to changes
 * Serialization using JSON.stringify()
 * Batch operations
+* Querying and filtering
 
 ## Usage
 

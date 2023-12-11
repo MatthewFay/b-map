@@ -124,4 +124,59 @@ export class BMap<K, V> extends Map<K, V> {
       this._notify('delete', entries)
     }
   }
+
+  /**
+   * Filter the map based on a predicate function.
+   * @param predicate A function that determines whether a key-value pair should be included.
+   * @returns A new BMap containing the filtered key-value pairs.
+   */
+  filter (predicate: (key: K, value: V) => boolean): BMap<K, V> {
+    const filteredEntries: Array<[K, V]> = []
+
+    for (const [key, value] of this.entries()) {
+      if (predicate(key, value)) {
+        filteredEntries.push([key, value])
+      }
+    }
+
+    return new BMap(filteredEntries)
+  }
+
+  /**
+   * Returns the key-value pair of the first element in the map where predicate is true, and undefined otherwise.
+   * @param predicate A function that returns true for the first matching key-value pair.
+   * @returns The first matching key-value pair, or undefined if none is found.
+   */
+  find (predicate: (key: K, value: V) => boolean): [K, V] | undefined {
+    for (const [key, value] of this.entries()) {
+      if (predicate(key, value)) {
+        return [key, value]
+      }
+    }
+
+    return undefined
+  }
+
+  /**
+   * Check if at least one key-value pair satisfies a condition.
+   * @param predicate A function that returns true for a matching key-value pair.
+   * @returns True if at least one matching key-value pair is found, false otherwise.
+   */
+  some (predicate: (key: K, value: V) => boolean): boolean {
+    return this.find(predicate) !== undefined
+  }
+
+  /**
+   * Check if every key-value pair satisfies a condition.
+   * @param predicate A function that returns true for a matching key-value pair.
+   * @returns True if every key-value pair matches the condition, false otherwise.
+   */
+  every (predicate: (key: K, value: V) => boolean): boolean {
+    for (const [key, value] of this.entries()) {
+      if (!predicate(key, value)) {
+        return false
+      }
+    }
+    return true
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "betmap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Better Map()",
   "main": "dist/BMap.js",
   "types": "dist/BMap.d.ts",
