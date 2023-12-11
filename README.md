@@ -5,6 +5,7 @@ Better Map()
 * Can be plugged in and used anywhere you use regular Map()
 * Event system to subscribe to changes
 * Serialization using JSON.stringify()
+* Batch operations
 
 ## Usage
 
