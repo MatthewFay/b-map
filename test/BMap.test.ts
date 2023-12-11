@@ -92,4 +92,63 @@ describe('test BMap', () => {
       expect(bmap.get(3)).toBe(4)
     })
   })
+
+  describe('test querying and filtering', () => {
+    test('test filter', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.filter((key, value) => value.test === 'hi')
+
+      expect(actual.size).toBe(1)
+      expect(actual.get(2)).toStrictEqual({ test: 'hi' })
+    })
+
+    test('test find', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.find((key, value) => value.test === 'hi')
+
+      expect(actual).toStrictEqual([2, { test: 'hi' }])
+    })
+
+    test('test find - not found', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.find((key, value) => value.test === 'hi2')
+
+      expect(actual).toBe(undefined)
+    })
+
+    test('test some', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.some((key, value) => value.test === 'hi')
+
+      expect(actual).toBe(true)
+    })
+
+    test('test some - should return false', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.some((key, value) => value.test === 'hi2')
+
+      expect(actual).toBe(false)
+    })
+
+    test('test every', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.every((key, value) => key < 3)
+
+      expect(actual).toBe(true)
+    })
+
+    test('test every - should return false', () => {
+      const bmap = new BMap([[1, { test: 'hello' }], [2, { test: 'hi' }]])
+
+      const actual = bmap.every((key, value) => key > 3)
+
+      expect(actual).toBe(false)
+    })
+  })
 })
