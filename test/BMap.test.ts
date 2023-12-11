@@ -77,7 +77,7 @@ describe('test BMap', () => {
       const bmap = new BMap()
 
       bmap.bSet([[1, 2], [3, 4]])
-  
+
       expect(bmap.size).toBe(2)
       expect(bmap.get(1)).toBe(2)
       expect(bmap.get(3)).toBe(4)
@@ -87,7 +87,7 @@ describe('test BMap', () => {
       const bmap = new BMap([[1, 2], [3, 4], [5, 6]])
 
       bmap.bDelete([1, 5])
-  
+
       expect(bmap.size).toBe(1)
       expect(bmap.get(3)).toBe(4)
     })
