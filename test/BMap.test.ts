@@ -151,4 +151,36 @@ describe('test BMap', () => {
       expect(actual).toBe(false)
     })
   })
+
+  describe('test transformation', () => {
+    test('transform keys', () => {
+      const bmap = new BMap([[1, 2], [3, 4]])
+
+      const actual = bmap.map((key, value) => [key + 1, value])
+
+      expect(actual.size).toBe(2)
+      expect(actual.get(2)).toBe(2)
+      expect(actual.get(4)).toBe(4)
+    })
+
+    test('transform values', () => {
+      const bmap = new BMap([[1, 2], [3, 4]])
+
+      const actual = bmap.map((key, value) => [key, value.toString()])
+
+      expect(actual.size).toBe(2)
+      expect(actual.get(1)).toBe('2')
+      expect(actual.get(3)).toBe('4')
+    })
+
+    test('transform both keys and values', () => {
+      const bmap = new BMap([[1, 2], [3, 4]])
+
+      const actual = bmap.map((key, value) => [key * 10, { v: value }])
+
+      expect(actual.size).toBe(2)
+      expect(actual.get(10)).toStrictEqual({ v: 2 })
+      expect(actual.get(30)).toStrictEqual({ v: 4 })
+    })
+  })
 })
