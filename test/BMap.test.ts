@@ -83,6 +83,16 @@ describe('test BMap', () => {
       expect(bmap.get(3)).toBe(4)
     })
 
+    test('batch get', () => {
+      const bmap = new BMap([[1, 'test1'], [2, 'test2'], [3, 'test3']])
+
+      const actual = bmap.bGet([2, 3])
+
+      expect(actual.size).toBe(2)
+      expect(actual.get(2)).toBe('test2')
+      expect(actual.get(3)).toBe('test3')
+    })
+
     test('batch delete', () => {
       const bmap = new BMap([[1, 2], [3, 4], [5, 6]])
 
