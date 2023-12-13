@@ -78,6 +78,23 @@ export class BMap<K, V> extends Map<K, V> {
   }
 
   /**
+   * Batch get multiple entries from the BMap.
+   * @param keys An array of keys to retrieve.
+   * @returns A new BMap containing the requested entries.
+   */
+  bGet (keys: K[]): BMap<K, V> {
+    const result = new BMap<K, V>()
+
+    for (const key of keys) {
+      if (this.has(key)) {
+        result.set(key, this.get(key) as V)
+      }
+    }
+
+    return result
+  }
+
+  /**
    * Delete by key. Returns deleted entry if key existed
    */
   private _delete (key: K): [K, V] | undefined {
