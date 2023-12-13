@@ -7,6 +7,7 @@ Better Map()
 * Serialization using JSON.stringify()
 * Batch operations
 * Querying and filtering
+* Transformation
 
 ## Usage
 

@@ -179,4 +179,38 @@ export class BMap<K, V> extends Map<K, V> {
     }
     return true
   }
+
+  /**
+   * Map over the entries of the BMap and apply a transformation function.
+   * @param callback A function that transforms each key/value.
+   * @returns A new BMap with transformed entries.
+   */
+  mapEntries<K2, V2>(callback: (key: K, value: V, map: BMap<K, V>) => [K2, V2]): BMap<K2, V2> {
+    const newMap = new BMap<K2, V2>()
+
+    for (const [key, value] of this.entries()) {
+      const [transformedKey, transformedValue] = callback(key, value, this)
+      newMap.set(transformedKey, transformedValue)
+    }
+
+    return newMap
+  }
+
+  /**
+   * Map over the values of the BMap and apply a transformation function.
+   * @param callback A function that transforms each value.
+   * @returns A new BMap with transformed values.
+   */
+  mapValues<V2>(callback: (key: K, value: V, map: BMap<K, V>) => V2): BMap<K, V2> {
+    return this.mapEntries((key, value) => ([key, callback(key, value, this)]))
+  }
+
+  /**
+   * Map over the keys of the BMap and apply a transformation function.
+   * @param callback A function that transforms each key.
+   * @returns A new BMap with transformed keys.
+   */
+  mapKeys<K2>(callback: (key: K, value: V, map: BMap<K, V>) => K2): BMap<K2, V> {
+    return this.mapEntries((key, value) => ([callback(key, value, this), value]))
+  }
 }
