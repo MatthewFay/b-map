@@ -219,4 +219,15 @@ describe('test BMap', () => {
       })
     })
   })
+
+  describe('test sort', () => {
+    test('sort keys in ascending order', () => {
+      const bmap = new BMap<number, string | number>([[2, 2], [1, 'sd']])
+
+      bmap.sort((a, b) => a[0] - b[0])
+
+      expect(bmap.size).toBe(2)
+      expect(Array.from(bmap.entries())).toStrictEqual([[1, 'sd'], [2, 2]])
+    })
+  })
 })

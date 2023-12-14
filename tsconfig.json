@@ -8,7 +8,6 @@
         "declaration": true, // Generate declaration files (.d.ts)
         "strict": true, // Enable strict mode
         "esModuleInterop": true, // Enable interoperability between CommonJS and ES Modules
-        "skipLibCheck": true, // Skip type checking of declaration files to speed up compilation
         "forceConsistentCasingInFileNames": true, // Enforce consistent casing of file names
         "outDir": "dist",
         "rootDir": "src",
