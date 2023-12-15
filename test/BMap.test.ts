@@ -70,6 +70,26 @@ describe('test BMap', () => {
       expect(listener.mock.lastCall[0].get(1)).toBe(2)
       expect(listener.mock.lastCall[0].get(2)).toBe(3)
     })
+
+    test('sort should not fire delete event', () => {
+      const bmap = new BMap([[1, 2], [2, 3]])
+      const listener = jest.fn()
+      bmap.on('delete', listener)
+
+      bmap.sort((a, b) => a.key - b.key)
+
+      expect(listener).toHaveBeenCalledTimes(0)
+    })
+
+    test('sort should not fire add event', () => {
+      const bmap = new BMap([[1, 2], [2, 3]])
+      const listener = jest.fn()
+      bmap.on('add', listener)
+
+      bmap.sort((a, b) => a.key - b.key)
+
+      expect(listener).toHaveBeenCalledTimes(0)
+    })
   })
 
   describe('test batch operations', () => {
@@ -224,10 +244,37 @@ describe('test BMap', () => {
     test('sort keys in ascending order', () => {
       const bmap = new BMap<number, string | number>([[2, 2], [1, 'sd']])
 
-      bmap.sort((a, b) => a[0] - b[0])
+      bmap.sort((a, b) => a.key - b.key)
 
       expect(bmap.size).toBe(2)
       expect(Array.from(bmap.entries())).toStrictEqual([[1, 'sd'], [2, 2]])
+    })
+
+    test('sort keys in descending order', () => {
+      const bmap = new BMap<number, string | number>([[2, 2], [5, 0], [1, 'sd']])
+
+      bmap.sort((a, b) => b.key - a.key)
+
+      expect(bmap.size).toBe(3)
+      expect(Array.from(bmap.entries())).toStrictEqual([[5, 0], [2, 2], [1, 'sd']])
+    })
+
+    test('sort values in ascending order', () => {
+      const bmap = new BMap<number, number>([[0, 2], [1, 0]])
+
+      bmap.sort((a, b) => a.value - b.value)
+
+      expect(bmap.size).toBe(2)
+      expect(Array.from(bmap.entries())).toStrictEqual([[1, 0], [0, 2]])
+    })
+
+    test('sort values in descending order', () => {
+      const bmap = new BMap<number, number>([[0, 2], [1, 0], [2, 6]])
+
+      bmap.sort((a, b) => b.value - a.value)
+
+      expect(bmap.size).toBe(3)
+      expect(Array.from(bmap.entries())).toStrictEqual([[2, 6], [0, 2], [1, 0]])
     })
   })
 })

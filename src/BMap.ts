@@ -233,11 +233,11 @@ export class BMap<K, V> extends Map<K, V> {
 
   /**
    * Sort the entries of the BMap in place.
-   * @param compareFunction A function that defines the sort order. If omitted, the entries are sorted based on their string representations.
+   * @param compareFunction A function that defines the sort order.
    * @returns The sorted BMap.
    */
-  sort (compareFunction?: (a: [K, V], b: [K, V]) => number): BMap<K, V> {
-    const sortedEntries = Array.from(this.entries()).sort(compareFunction)
+  sort (compareFunction: (a: { key: K, value: V }, b: { key: K, value: V }) => number): BMap<K, V> {
+    const sortedEntries = Array.from(this.entries()).sort((a, b) => compareFunction({ key: a[0], value: a[1] }, { key: b[0], value: b[1] }))
 
     // Clear the current map. Using `super` instead of `this` so that we don't fire a delete event.
     super.clear()
