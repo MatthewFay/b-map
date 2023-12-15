@@ -8,6 +8,7 @@ Better Map()
 * Batch operations
 * Querying and filtering
 * Transformation
+* Sortable
 
 ## Usage
 

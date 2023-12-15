@@ -230,4 +230,24 @@ export class BMap<K, V> extends Map<K, V> {
   mapKeys<K2>(callback: (key: K, value: V, map: BMap<K, V>) => K2): BMap<K2, V> {
     return this.mapEntries((key, value) => ([callback(key, value, this), value]))
   }
+
+  /**
+   * Sort the entries of the BMap in place.
+   * @param compareFunction A function that defines the sort order.
+   * @returns The sorted BMap.
+   */
+  sort (compareFunction: (a: { key: K, value: V }, b: { key: K, value: V }) => number): BMap<K, V> {
+    const sortedEntries = Array.from(this.entries()).sort((a, b) => compareFunction({ key: a[0], value: a[1] }, { key: b[0], value: b[1] }))
+
+    // Clear the current map. Using `super` instead of `this` so that we don't fire a delete event.
+    super.clear()
+
+    // Populate the map with the sorted entries
+    for (const [key, value] of sortedEntries) {
+      // Using `super` instead of `this` so that we don't fire an add event.
+      super.set(key, value)
+    }
+
+    return this
+  }
 }
