@@ -9,6 +9,7 @@ Better Map()
 * Querying and filtering
 * Transformation
 * Sortable
+* Map merging
 
 ## Usage
 
