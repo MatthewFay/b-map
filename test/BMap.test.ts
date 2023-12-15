@@ -277,4 +277,20 @@ describe('test BMap', () => {
       expect(Array.from(bmap.entries())).toStrictEqual([[2, 6], [0, 2], [1, 0]])
     })
   })
+
+  describe('test merge', () => {
+    test('custom merge strategy', () => {
+      const bmap = new BMap([[1, { ts: 100 }], [2, { ts: 200 }]])
+      const map = new Map([[1, { ts: 150 }], [3, { ts: 300 }]])
+
+      const actual = bmap.merge(map, (key, existingValue, incomingValue) => {
+        return incomingValue.ts > existingValue.ts ? incomingValue : existingValue
+      })
+
+      expect(actual.size).toBe(3)
+      expect(actual.get(1)).toStrictEqual({ ts: 150 })
+      expect(actual.get(2)).toStrictEqual({ ts: 200 })
+      expect(actual.get(3)).toStrictEqual({ ts: 300 })
+    })
+  })
 })

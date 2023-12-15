@@ -250,4 +250,26 @@ export class BMap<K, V> extends Map<K, V> {
 
     return this
   }
+
+  /**
+   * Merge two maps, resolving conflicts based on a customizable merge strategy.
+   * @param otherMap The map to merge into the current map.
+   * @param mergeStrategy A function that defines the merge strategy for conflicts.
+   * @returns The merged BMap.
+   */
+  merge (otherMap: Map<K, V>, mergeStrategy: (key: K, existingValue: V, incomingValue: V) => V): BMap<K, V> {
+    const mergedMap = new BMap<K, V>(this)
+
+    for (const [key, incomingValue] of otherMap.entries()) {
+      if (mergedMap.has(key)) {
+        const existingValue = mergedMap.get(key) as V
+        const newValue = mergeStrategy(key, existingValue, incomingValue)
+        mergedMap.set(key, newValue)
+      } else {
+        mergedMap.set(key, incomingValue)
+      }
+    }
+
+    return mergedMap
+  }
 }
