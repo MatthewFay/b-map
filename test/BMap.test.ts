@@ -103,6 +103,16 @@ describe('test BMap', () => {
       expect(bmap.get(3)).toBe(4)
     })
 
+    test('batch set - 2', () => {
+      const bmap = new BMap()
+
+      bmap.bSet([['id1', 2], ['id2', 4]])
+
+      expect(bmap.size).toBe(2)
+      expect(bmap.get('id1')).toBe(2)
+      expect(bmap.get('id2')).toBe(4)
+    })
+
     test('batch get', () => {
       const bmap = new BMap([[1, 'test1'], [2, 'test2'], [3, 'test3']])
 
@@ -111,6 +121,17 @@ describe('test BMap', () => {
       expect(actual.size).toBe(2)
       expect(actual.get(2)).toBe('test2')
       expect(actual.get(3)).toBe('test3')
+    })
+
+    test('batch get - 2', () => {
+      const bmap = new BMap()
+      bmap.bSet([['id1', 2], ['id2', 4], ['id3', 6]])
+
+      const actual = bmap.bGet(['id1', 'id2'])
+
+      expect(actual.size).toBe(2)
+      expect(actual.get('id1')).toBe(2)
+      expect(actual.get('id2')).toBe(4)
     })
 
     test('batch delete', () => {
