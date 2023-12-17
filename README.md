@@ -117,13 +117,16 @@ You can apply a transformation function to entries in a BMap, producing a new, t
 ```ts
 const bmap = new BMap([['vanilla', 0], ['chocolate', 0]])
 
-// Add 1 to each value using `mapValues`
-const add1 = bmap.mapValues((key, value) => value + 1)
+// Add 1 to each value using `mapValues`.
+// `valuePlusOne` will contain: [['vanilla', 1], ['chocolate', 1]]
+const valuePlusOne = bmap.mapValues((key, value) => value + 1)
 
-// Add a prefix to each key using `mapKeys`
+// Add a prefix to each key using `mapKeys`.
+// `prefixed` will contain: [['id:vanilla', 0], ['id:chocolate', 0]]
 const prefixed = bmap.mapKeys((key) => `id:${key}`)
 
-// Transform both keys and values using `mapEntries`
+// Transform both keys and values using `mapEntries`.
+// `both` will contain: [['id:vanilla', 1], ['id:chocolate', 1]]
 const both = bmap.mapEntries((key, value) => [`id:${key}`, value + 1])
 ```
 
