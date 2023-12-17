@@ -11,6 +11,14 @@ describe('test BMap', () => {
 
       expect(actual).toStrictEqual('[[1,2],["test","test2"]]')
     })
+
+    test('serializes correctly - 2', () => {
+      const bmap = new BMap([['id1', { name: 'Acme' }], ['id2', { name: 'Acme #2' }]])
+
+      const actual = JSON.stringify(bmap)
+
+      expect(actual).toStrictEqual('[["id1",{"name":"Acme"}],["id2",{"name":"Acme #2"}]]')
+    })
   })
 
   describe('test event system', () => {
