@@ -100,8 +100,8 @@ const onlyBlue = bmap.filter((key, value) => value.color === 'blue')
 // `find` returns the key-value pair of the first element in the map where predicate is true, and undefined otherwise.
 const firstRed = bmap.find((key, value) => value.color === 'red')
 
-// `brown` will be undefined (no entry found)
-const brown = bmap.find((key, value) => value.color === 'brown')
+// `green` will be undefined (no entry found)
+const green = bmap.find((key, value) => value.color === 'green')
 
 // Check if at least one key-value pair satisfies a condition.
 const hasRed: boolean = bmap.some((key, value) => value.color === 'red')
