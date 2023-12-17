@@ -1,7 +1,7 @@
 # Exclude source and development files
 src
 .nvmrc
-jest.config.js
+jest.config.ts
 tsconfig.eslint.json
 tsconfig.json
 
